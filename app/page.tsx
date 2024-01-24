@@ -6,15 +6,14 @@ import SignUpUserSteps from "@/components/SignUpUserSteps";
 import Header from "@/components/Header";
 import { cookies } from "next/headers";
 import Image from "next/image";
-import LogoImg from "../app/Styles/Assets/logowhite.png"
+import LogoImg from "../app/Styles/ARw.svg"
 import CardComponent from "@/components/CardComponent"
+import "@/app/Styles/MainPage.scss"
 
 export default async function Index() {
   const cookieStore = cookies();
 
   const canInitSupabaseClient = () => {
-    // This function is just for the interactive tutorial.
-    // Feel free to remove it once you have Supabase connected.
     try {
       createClient(cookieStore);
       return true;
@@ -22,35 +21,41 @@ export default async function Index() {
       return false;
     }
   };
-
+ 
   const isSupabaseConnected = canInitSupabaseClient();
+  const supabase = createClient(cookieStore);
+  const { data } = await supabase.from("archive").select();
+  
 
   return (
     <div className="flex-1 w-full flex flex-col gap-20 items-center">
       <nav className="w-full flex justify-center h-16 pt-4">
         <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
           <div className="">
-            <Image src={LogoImg} width={80} height={80} alt="Logo Image"></Image>
+            <Image src={LogoImg} width={100} height={100} alt="Logo Image"></Image>
           </div>
-          {isSupabaseConnected && <AuthButton />}
+          {isSupabaseConnected && <AuthButton />} 
+          
         </div>
       </nav>
 
      <div className="cards-container">
-      {/* <CardComponent></CardComponent> */}
+     {data?.map((item) => (
+          <CardComponent
+            key={item.id}
+            title={item.site_name}
+            description={item.site_desc}
+            type={item.site_type}
+            image={item.image_url}
+            url={item.site_url}
+          />
+        ))}
      </div>
 
       <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
         <p>
-          Powered by{" "}
-          <a
-            href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-            target="_blank"
-            className="font-bold hover:underline"
-            rel="noreferrer"
-          >
-            Sadbois
-          </a>
+          Made with ❤️ for <strong>developers</strong>.
+         
         </p>
       </footer>
     </div>
