@@ -14,6 +14,16 @@ const CardComponent = ({ title, description, type, image, url }) => {
 
   }
 
+  const typeClassMap = {
+    UI: "ui",
+    Design: "design",
+    Icon:"icon",
+    Code:"code"
+  
+  };
+  const typeClass = typeClassMap[type] || "";
+
+
   return (
     <div className="card-container">
       <a href={url} target="_blank">
@@ -27,7 +37,7 @@ const CardComponent = ({ title, description, type, image, url }) => {
         <FontAwesomeIcon onClick={handleLike} className={`heart-icon ${like ? "liked" : ""}`} icon={faHeart}></FontAwesomeIcon>
       </div>
       <div className="card-description">{description}</div>
-      <div className="card-type">{type}</div>
+      <div className={`card-type ${typeClass}`}>{type}</div>
     </div>
   );
 }; ""

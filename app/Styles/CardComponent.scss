@@ -1,3 +1,4 @@
+@import url(../Styles/variables.css);
 .card-container {
   width: 400px;
   display: flex;
@@ -38,7 +39,7 @@
   }
 
   .card-type {
-    background-color: rgb(45, 92, 221);
+   
     text-align: center;
     
     width: 20%;
@@ -61,4 +62,23 @@
   100% {
     transform: scale(1);
   }
+}
+
+
+.ui{
+    background-color: var(--main-blue);
+    color: white;
+}
+.design{
+    background-color: var(--main-purple);
+    color: white;
+}
+.icon{
+    background-color: var(--main-green);
+    color: white;
+}
+.code{
+    background-color: var(--main-yellow);
+    color: black;
+
 }

@@ -9,6 +9,7 @@ import Image from "next/image";
 import LogoImg from "../app/Styles/ARw.svg"
 import CardComponent from "@/components/CardComponent"
 import "@/app/Styles/MainPage.scss"
+import SuggestSite from "@/components/SuggestSite"
 
 export default async function Index() {
   const cookieStore = cookies();
@@ -34,6 +35,7 @@ export default async function Index() {
           <div className="">
             <Image src={LogoImg} width={100} height={100} alt="Logo Image"></Image>
           </div>
+          {isSupabaseConnected && <SuggestSite />}
           {isSupabaseConnected && <AuthButton />} 
           
         </div>
