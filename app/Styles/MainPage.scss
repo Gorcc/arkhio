@@ -3,3 +3,17 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+
+.right-side{
+    display: flex;
+    align-items: center;
+}
+
+
+.suggest-site{
+    margin-left: 20px;
+    padding: 8px;
+    border-radius: 0.375rem;
+
+    font-weight: bold;
+}
