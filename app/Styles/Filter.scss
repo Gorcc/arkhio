@@ -1,0 +1,32 @@
+
+.filter-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    h1{
+        margin-bottom: 12px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+}
+
+.filter{
+    padding: 12px;
+    border: 1px solid var(--main-blue);
+}
+
+.active-filter{
+    background-color: var(--main-blue);
+}
+
+
+.filter button{
+    transition: 0.3s all ease;
+    height: 100%;
+
+    padding: 4px 16px;
+    cursor: pointer;
+}

@@ -8,9 +8,8 @@ import { cookies } from "next/headers";
 import Image from "next/image";
 import LogoImg from "../app/Styles/ARw.svg";
 import CardComponent from "@/components/CardComponent";
+import Filter from "../components/Filter";
 import "@/app/Styles/MainPage.scss";
-import SuggestSite from "@/components/SuggestSite";
-import Filter from "@/components/Filter"
 
 export default async function Index() {
   const cookieStore = cookies();
@@ -27,14 +26,11 @@ export default async function Index() {
   const isSupabaseConnected = canInitSupabaseClient();
   const supabase = createClient(cookieStore);
   const { data } = await supabase.from("archive").select();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
 
   return (
     <div className="flex-1 w-full flex flex-col gap-20 items-center">
       <nav className="w-full flex justify-center h-16 pt-4">
-        <div className="w-full max-w-7xl flex justify-between items-center p-3 text-sm">
+        <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
           <div className="">
             <Image
               src={LogoImg}
@@ -43,13 +39,10 @@ export default async function Index() {
               alt="Logo Image"
             ></Image>
           </div>
-          <div className="right-side">
-            {isSupabaseConnected && <AuthButton />}
-            {user && <SuggestSite />}
-          </div>
+          {isSupabaseConnected && <AuthButton />}
         </div>
       </nav>
-     <Filter></Filter>
+      <Filter></Filter>
       <div className="cards-container">
         {data?.map((item) => (
           <CardComponent
