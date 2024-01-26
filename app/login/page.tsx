@@ -4,6 +4,7 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
 export default function Login({
+  
   searchParams,
 }: {
   searchParams: { message: string };
@@ -11,21 +12,25 @@ export default function Login({
   const signIn = async (formData: FormData) => {
     "use server";
 
+    
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const cookieStore = cookies();
     const supabase = createClient(cookieStore);
+    
 
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
+    
 
     if (error) {
       return redirect("/login?message=Could not authenticate user");
     }
-
+   
     return redirect("/");
+    
   };
 
   const signUp = async (formData: FormData) => {
@@ -36,19 +41,22 @@ export default function Login({
     const password = formData.get("password") as string;
     const cookieStore = cookies();
     const supabase = createClient(cookieStore);
-
+    
     const { error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         emailRedirectTo: `${origin}/auth/callback`,
       },
+      
     });
 
     if (error) {
       return redirect("/login?message=Could not authenticate user");
+      
     }
 
+    
     return redirect("/login?message=Check email to continue sign in process");
   };
 

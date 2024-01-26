@@ -4,13 +4,17 @@ import "../app/Styles/CardComponent.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
+const CardComponent = ({ title, description, type, image, url, userData,id }) => {
 
-const CardComponent = ({ title, description, type, image, url }) => {
+  const supabase = createClientComponentClient();
+  
   const [like, setLike] = useState(false);
   const handleLike = () => {
     setLike((prevLike) => !prevLike);
-    console.log(like)
+    console.log(id);
+
 
   }
 
