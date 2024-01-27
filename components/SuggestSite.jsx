@@ -15,7 +15,7 @@ const SuggestSite = () => {
       data: { user },
     } = await supabase.auth.getUser();
 
-    await sendDiscordMessage(`Site Name: ${siteName} ,\n Site URL: ${siteURL} ,\n User: ${user.email}`);
+    await sendDiscordMessage(`Site Name: ${siteName}\n\nSite URL: ${siteURL}\n\nSuggested User: ${user.email}`);
 
   
   };
@@ -24,7 +24,7 @@ const SuggestSite = () => {
     <div className="suggest-site">
       <Dialog.Root>
         <Dialog.Trigger asChild>
-          <button className="Button violet">Suggest a Website</button>
+          <button className="Button suggest-site-btn">Suggest a Website</button>
         </Dialog.Trigger>
         <Dialog.Portal>
           <Dialog.Overlay className="DialogOverlay" />

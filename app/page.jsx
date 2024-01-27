@@ -56,9 +56,9 @@ export default async function Index() {
       <Filter userData={user}></Filter>
 
       <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
-        <p>
-          Made with ❤️ for <strong>developers</strong>.
-        </p>
+        <a href="https://github.com/Gorcc" target="_blank">
+          GitHub
+        </a>
       </footer>
     </div>
   );
