@@ -4,7 +4,7 @@ import "../app/Styles/Filter.scss";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import CardComponent from "./CardComponent";
 
-const Filter = ({ userData }) => {
+const Filter = ({ userData, userFavs }) => {
   const [filter, setFilter] = useState("");
   const [data, setData] = useState([]);
 
@@ -19,14 +19,17 @@ const Filter = ({ userData }) => {
       let query = supabase.from("archive");
 
       if (filter) {
-        query = query.select().eq("site_type", filter);
+        if (filter === "Favorites") {
+          query = query.select().in("id", userFavs[0].favorites);
+        } else {
+          query = query.select().eq("site_type", filter);
+        }
       } else {
         query = query.select();
       }
-
+  
       const { data } = await query;
       setData(data);
-      
     };
 
     fetchData();
@@ -67,17 +70,20 @@ const Filter = ({ userData }) => {
           >
             Code
           </button>
-          {userData && <button
-            className={filter === "Favorites" ? "active-filter" : ""}
-            onClick={() => handleFilter("Favorites")}
-          >
-            Favorites
-          </button>}
+          {userData && (
+            <button
+              className={filter === "Favorites" ? "active-filter" : ""}
+              onClick={() => handleFilter("Favorites")}
+            >
+              Favorites
+            </button>
+          )}
         </div>
       </div>
       <div className="cards-container">
         {data?.map((item) => (
           <CardComponent
+            userFavs={userFavs}
             userData={userData}
             id={item.id}
             key={item.id}
@@ -93,5 +99,4 @@ const Filter = ({ userData }) => {
   );
 };
 
-// Export the Filter component
 export default Filter;

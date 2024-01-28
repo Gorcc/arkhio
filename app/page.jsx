@@ -29,10 +29,19 @@ export default async function Index() {
     .from("users")
     .select("id")
     .eq("id", user?.id);
+
+
+    const { data: userFavs } = await supabase
+    .from("users")
+    .select("favorites")
+    .eq("id", user?.id);
+
+
   
   if (!existingUser || existingUser.length === 0) {
     const { data: newUser } = await supabase.from("users").insert({ id: user?.id });
   } 
+
   
 
   return (
@@ -48,13 +57,13 @@ export default async function Index() {
             ></Image>
           </div>
           <div className="header-right flex">
-            {isSupabaseConnected && <AuthButton />}
+            {isSupabaseConnected && <AuthButton className="cursor-pointer" />}
             {user && <SuggestSite />}
           </div>
         </div>
       </nav>
-      <Filter userData={user}></Filter>
-
+      <Filter userData={user} userFavs={userFavs}></Filter>
+      
       <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
         <a href="https://github.com/Gorcc" target="_blank">
           GitHub

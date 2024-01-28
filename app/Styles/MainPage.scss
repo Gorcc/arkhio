@@ -17,3 +17,13 @@
 
     font-weight: bold;
 }
+
+
+
+@media screen and (max-width: 992px) {
+    .suggest-site-btn{
+        font-size: 10px !important;
+        height: 35px !important;
+        text-align: center;
+    }
+  }
