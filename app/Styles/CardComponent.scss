@@ -6,21 +6,19 @@
   justify-content: center;
   margin: 8px 24px;
   border: 2px solid rgba(128, 128, 128, 0.39);
- padding: 24px;
- border-radius: 0.375rem;
+  padding: 24px;
+  border-radius: 1rem;
+  transition: 0.3s all ease;
 
   img {
-   width: 100%;
-   height: auto;
+    width: 100%;
+    height: auto;
     border-radius: 15px;
     margin-bottom: 8px;
- 
-
   }
 
   .card-description {
     height: 100px;
-    
   }
 
   .card-title {
@@ -45,15 +43,19 @@
   }
 
   .card-type {
-    
     text-align: center;
-  
+
     width: 20%;
     margin: 0 auto;
     margin-bottom: 24px;
     border-radius: 5%;
     font-weight: bold;
   }
+}
+.card-container:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+  background-color: rgba(241, 240, 237, 0.062);
 }
 
 @keyframes myAnim {
@@ -70,23 +72,19 @@
   }
 }
 
-
-.ui{
-    background-color: var(--main-blue);
-    color: white;
- 
+.ui {
+  background-color: var(--main-blue);
+  color: white;
 }
-.design{
-    background-color: var(--main-purple);
-    color: white;
+.design {
+  background-color: var(--main-purple);
+  color: white;
 }
-.icon{
-    background-color: var(--main-green);
-    color: white;
+.icon {
+  background-color: var(--main-green);
+  color: white;
 }
-.code{
-    background-color: var(--main-yellow);
-    color: black;
-
+.code {
+  background-color: var(--main-yellow);
+  color: black;
 }
-
