@@ -25,7 +25,7 @@ const CardComponent = ({
     <div className="card-container">
       <a href={url} target="_blank">
         <img src={image} alt="Site Image" />
-      
+        </a>
 
       <div className="title-fav">
         <div className="card-title">
@@ -34,7 +34,7 @@ const CardComponent = ({
         <FavoriteButton userData={userData} postId={id} userFavs={userFavs}></FavoriteButton>
       </div>
       <div className="card-description">{description}</div>
-      <div className={`card-type ${typeClass}`}>{type}</div></a>
+      <div className={`card-type ${typeClass}`}>{type}</div>
     </div>
   );
 };
