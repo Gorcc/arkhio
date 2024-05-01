@@ -15,9 +15,15 @@ const SuggestSite = () => {
       data: { user },
     } = await supabase.auth.getUser();
 
-    await sendDiscordMessage(`Site Name: ${siteName}\n\nSite URL: ${siteURL}\n\nSuggested User: ${user.email}`);
-
-  
+    try {
+      await sendDiscordMessage(
+        `Site Name: ${siteName}\n\nSite URL: ${siteURL}\n\nSuggested User: ${user.email}`
+        
+      );
+      alert("Your suggestion sent succesfully!");
+    } catch (error) {
+      alert("There was a problem sending your suggestion.");
+    }
   };
 
   return (
@@ -40,7 +46,12 @@ const SuggestSite = () => {
               <label className="Label" htmlFor="name">
                 Site Name
               </label>
-              <input className="Input" id="name" defaultValue="Arkhio"  onChange={(e) => setSiteName(e.target.value)}/>
+              <input
+                className="Input"
+                id="name"
+                defaultValue="Arkhio"
+                onChange={(e) => setSiteName(e.target.value)}
+              />
             </fieldset>
             <fieldset className="Fieldset">
               <label className="Label" htmlFor="username">

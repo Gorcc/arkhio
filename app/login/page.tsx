@@ -48,7 +48,7 @@ export default function Login({
     });
 
     if (error) {
-      return redirect("/login?message=Could not authenticate user");
+      return redirect("/login?message=Error signing up");
     }
 
     return redirect("/login?message=Check email to continue sign in process");
@@ -85,6 +85,7 @@ export default function Login({
         <label className="text-md" htmlFor="email">
           Email
         </label>
+        
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="email"
@@ -106,7 +107,7 @@ export default function Login({
         </button>
         <button
           formAction={signUp}
-          className=" bg-blue-700 rounded-md px-4 py-2 text-foreground mb-2 cursor-pointer text-center"
+          className=" bg-blue-100 rounded-md px-4 py-2 text-black mb-2 cursor-pointer text-center"
         >
           Sign Up
         </button>
@@ -115,7 +116,15 @@ export default function Login({
             {searchParams.message}
           </p>
         )}
+       <div className="flex flex-col justify-center items-center mt-4">
+       <h1 className="mb-4 ">
+          Demo Account
+        </h1>
+        <h2>demouser@demo.com</h2>
+        <h2>demo123</h2>
+       </div>
       </form>
+     
     </div>
   );
 }

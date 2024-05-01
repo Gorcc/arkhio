@@ -65,7 +65,12 @@ const FavoriteButton = ({ userData, postId, userFavs }) => {
   }, [like, userData, postId]);
 
   useEffect(() => {
-    if (userData && userFavs[0].favorites.includes(postId)) {
+    if (
+      userData &&
+      userFavs[0].favorites !== undefined &&
+      userFavs[0].favorites !== null &&
+      userFavs[0].favorites.includes(postId)
+    ) {
       setLike(true);
     }
   }, []);
